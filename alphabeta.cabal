@@ -1,0 +1,96 @@
+cabal-version: 1.12
+
+-- This file has been generated from package.yaml by hpack version 0.34.4.
+--
+-- see: https://github.com/sol/hpack
+
+name:           alphabeta
+version:        0.1.0.0
+description:    Please see the README on GitHub at <https://github.com/davidspies/alphabeta#readme>
+homepage:       https://github.com/davidspies/alphabeta#readme
+bug-reports:    https://github.com/davidspies/alphabeta/issues
+author:         David Spies
+maintainer:     dnspies@gmail.com
+copyright:      2022 David Spies
+license:        BSD3
+license-file:   LICENSE
+build-type:     Simple
+extra-source-files:
+    README.md
+    ChangeLog.md
+
+source-repository head
+  type: git
+  location: https://github.com/davidspies/alphabeta
+
+library
+  exposed-modules:
+      AlphaBeta
+      Convert
+      Evaluate
+      Extrema
+      Game
+      LazyMax
+      LazyMin
+      MiniMax
+      ThunkTree
+      ThunkTree.Descend
+      ThunkTree.Inner
+      ThunkTree.Nodes
+      ZeroSumGame
+  other-modules:
+      Paths_alphabeta
+  hs-source-dirs:
+      src
+  default-extensions:
+      DeriveAnyClass
+      DeriveGeneric
+      DerivingVia
+      FlexibleContexts
+      FlexibleInstances
+      LambdaCase
+      MultiParamTypeClasses
+      NamedFieldPuns
+      StandaloneDeriving
+      TypeFamilies
+  ghc-options: -Wall
+  build-depends:
+      base >=4.7 && <5
+    , memoize
+  default-language: Haskell2010
+
+test-suite alphabeta-test
+  type: exitcode-stdio-1.0
+  main-is: Tasty.hs
+  other-modules:
+      LibTest
+      MemoTrie.Orphans
+      TicTacN
+      TreeGame
+      TreeGameBuilder
+      Paths_alphabeta
+  hs-source-dirs:
+      test
+  default-extensions:
+      DeriveAnyClass
+      DeriveGeneric
+      DerivingVia
+      FlexibleContexts
+      FlexibleInstances
+      LambdaCase
+      MultiParamTypeClasses
+      NamedFieldPuns
+      StandaloneDeriving
+      TypeFamilies
+  ghc-options: -Wall -Wno-missing-export-lists -Wno-unsafe -threaded -rtsopts -with-rtsopts=-N
+  build-depends:
+      alphabeta
+    , base >=4.7 && <5
+    , containers
+    , hspec
+    , memoize
+    , tasty
+    , tasty-discover
+    , tasty-hspec
+    , vector
+  default-language: Haskell2010
