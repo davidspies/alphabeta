@@ -1,6 +1,6 @@
 {-# OPTIONS_GHC -Wno-orphans #-}
 
-module MemoTrie.Orphans where
+module Memoize.Orphans where
 
 import Data.Function.Memoize (Memoize (..))
 import Data.List.NonEmpty (NonEmpty (..))

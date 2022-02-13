@@ -8,7 +8,7 @@ import qualified Data.List.NonEmpty as NonEmpty
 import Extrema (Extrema)
 import GHC.Generics (Generic)
 import Game (Game, GameStatus (..))
-import MemoTrie.Orphans ()
+import Memoize.Orphans ()
 import ZeroSumGame (IsZeroSumGame, Player, ZeroSumGame (..))
 import qualified ZeroSumGame
 import Prelude

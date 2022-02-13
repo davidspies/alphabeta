@@ -8,7 +8,6 @@ module TreeGameBuilder where
 import qualified Data.List.NonEmpty as NonEmpty
 import Data.Proxy (Proxy (Proxy))
 import GHC.Stack (HasCallStack)
-import MemoTrie.Orphans ()
 import TreeGame (Position (..))
 import ZeroSumGame (Player (MinPlayer), opposite)
 import Prelude
