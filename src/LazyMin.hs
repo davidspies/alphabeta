@@ -1,4 +1,4 @@
-module LazyMin (LazyMin, minimum, getResolved) where
+module LazyMin (LazyMin, minimum) where
 
 import Data.List.NonEmpty (NonEmpty)
 import Data.Ord (Down (..))
@@ -11,9 +11,6 @@ newtype LazyMin a = LazyMin (LazyMax (Down a))
 
 minimum :: NonEmpty a -> LazyMin a
 minimum xs = LazyMin $ LazyMax.maximum $ Down <$> xs
-
-getResolved :: LazyMin a -> IO (Maybe a)
-getResolved (LazyMin x) = fmap getDown <$> LazyMax.getResolved x
 
 instance Evaluate LazyMin where
   evaluate (LazyMin x) = getDown $ evaluate x

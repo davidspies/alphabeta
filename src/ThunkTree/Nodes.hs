@@ -1,8 +1,6 @@
 module ThunkTree.Nodes
   ( MaxNode,
     MinNode,
-    getResolvedMax,
-    getResolvedMin,
     leaf,
     maxNode,
     minNode,
@@ -49,16 +47,6 @@ instance Convert MaxNode MinNode where
   convert n = case n of
     MaxLeaf x -> MinLeaf x
     MaxBranch _ -> MinBranch $ LazyMin.minimum (n :| [])
-
-getResolvedMax :: MaxNode a -> IO (Maybe (MinNode a))
-getResolvedMax = \case
-  MaxLeaf _ -> return Nothing
-  MaxBranch x -> LazyMax.getResolved x
-
-getResolvedMin :: MinNode a -> IO (Maybe (MaxNode a))
-getResolvedMin = \case
-  MinLeaf _ -> return Nothing
-  MinBranch x -> LazyMin.getResolved x
 
 instance Ord a => Eq (MaxNode a) where
   x == y = x <= y && y <= x

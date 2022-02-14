@@ -1,4 +1,4 @@
-module LazyMax (LazyMax, maximum, getResolved) where
+module LazyMax (LazyMax, maximum) where
 
 import Data.IORef (IORef, newIORef, readIORef, writeIORef)
 import Data.List.NonEmpty (NonEmpty (..))
@@ -7,11 +7,6 @@ import System.IO.Unsafe (unsafePerformIO)
 import Prelude hiding (maximum)
 
 newtype LazyMax a = LazyMax {getLazyMax :: IORef (a, [a])}
-
-getResolved :: LazyMax a -> IO (Maybe a)
-getResolved (LazyMax ref) = do
-  (x, xs) <- readIORef ref
-  return $ if null xs then Just x else Nothing
 
 step :: Ord a => LazyMax a -> IO ()
 step (LazyMax ref) = do
