@@ -36,7 +36,7 @@ packages:
 #
 extra-deps:
   - git: https://github.com/davidspies/memoize
-    commit: 677315f584603b1caadc1954984622b0407dc1b6
+    commit: 0eb39cb0694441a310097afaab25ca428df1ce76
 
 # Override default flag values for local packages and extra-deps
 # flags: {}

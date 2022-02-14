@@ -16,7 +16,6 @@ import GHC.Generics (Generic)
 import GHC.Stack (HasCallStack)
 import Game (Game, GameStatus (GameOver, GameState, moves))
 import qualified Game
-import Memoize.Orphans ()
 import ZeroSumGame (IsZeroSumGame, Player (..), ZeroSumGame, opposite)
 import qualified ZeroSumGame
 

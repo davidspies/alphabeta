@@ -62,7 +62,6 @@ test-suite alphabeta-test
   main-is: Tasty.hs
   other-modules:
       LibTest
-      Memoize.Orphans
       TicTacN
       TreeGame
       TreeGameBuilder

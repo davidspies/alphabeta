@@ -9,12 +9,12 @@ packages:
     version: 0.1.0.0
     git: https://github.com/davidspies/memoize
     pantry-tree:
-      size: 719
-      sha256: 52d417d9fd3aa15a391fc8d9705ed1201a9364e0229379276b0c60c11c352661
-    commit: 677315f584603b1caadc1954984622b0407dc1b6
+      size: 1315
+      sha256: ce604d8e57333a2d2510ec365fd8eab5db54fabf403ae7124af9fb7d95e586fe
+    commit: 0eb39cb0694441a310097afaab25ca428df1ce76
   original:
     git: https://github.com/davidspies/memoize
-    commit: 677315f584603b1caadc1954984622b0407dc1b6
+    commit: 0eb39cb0694441a310097afaab25ca428df1ce76
 snapshots:
 - completed:
     size: 587819
