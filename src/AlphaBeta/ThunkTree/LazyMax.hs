@@ -1,8 +1,8 @@
-module LazyMax (LazyMax, maximum) where
+module AlphaBeta.ThunkTree.LazyMax (LazyMax, maximum) where
 
 import Data.IORef (IORef, newIORef, readIORef, writeIORef)
 import Data.List.NonEmpty (NonEmpty (..))
-import Evaluate (Evaluate (..))
+import AlphaBeta.Evaluate (Evaluate (..))
 import System.IO.Unsafe (unsafePerformIO)
 import Prelude hiding (maximum)
 

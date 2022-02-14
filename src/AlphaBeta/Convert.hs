@@ -1,6 +1,6 @@
-module Convert where
+module AlphaBeta.Convert where
 
-import Evaluate (Evaluate)
+import AlphaBeta.Evaluate (Evaluate)
 
 class (Evaluate a, Evaluate b) => Convert a b where
   convert :: a x -> b x

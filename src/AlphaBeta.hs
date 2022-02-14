@@ -2,6 +2,7 @@
 
 module AlphaBeta (solve) where
 
+import AlphaBeta.ThunkTree (ThunkTree, evaluate, leaf)
 import Data.Function.Memoize (Memoize)
 import qualified Data.List as List
 import Data.List.NonEmpty (NonEmpty)
@@ -9,7 +10,6 @@ import qualified Data.List.NonEmpty as NonEmpty
 import Data.Ord (Down (Down))
 import Game (Game, GameStatus (..))
 import qualified MiniMax
-import ThunkTree (ThunkTree, evaluate, leaf)
 import ZeroSumGame (IsZeroSumGame (..), ZeroSumGame (..))
 import Prelude
 

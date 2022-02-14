@@ -1,10 +1,10 @@
-module LazyMin (LazyMin, minimum) where
+module AlphaBeta.ThunkTree.LazyMin (LazyMin, minimum) where
 
+import AlphaBeta.Evaluate (Evaluate (..))
+import AlphaBeta.ThunkTree.LazyMax (LazyMax)
+import qualified AlphaBeta.ThunkTree.LazyMax as LazyMax
 import Data.List.NonEmpty (NonEmpty)
 import Data.Ord (Down (..))
-import Evaluate (Evaluate (..))
-import LazyMax (LazyMax)
-import qualified LazyMax
 import Prelude hiding (maximum, minimum)
 
 newtype LazyMin a = LazyMin (LazyMax (Down a))

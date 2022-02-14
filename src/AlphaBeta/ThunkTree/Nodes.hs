@@ -1,4 +1,4 @@
-module ThunkTree.Nodes
+module AlphaBeta.ThunkTree.Nodes
   ( MaxNode,
     MinNode,
     leaf,
@@ -7,13 +7,13 @@ module ThunkTree.Nodes
   )
 where
 
-import Convert (Convert (..))
+import AlphaBeta.Convert (Convert (..))
+import AlphaBeta.Evaluate (Evaluate (..))
+import AlphaBeta.ThunkTree.LazyMax (LazyMax)
+import qualified AlphaBeta.ThunkTree.LazyMax as LazyMax
+import AlphaBeta.ThunkTree.LazyMin (LazyMin)
+import qualified AlphaBeta.ThunkTree.LazyMin as LazyMin
 import Data.List.NonEmpty (NonEmpty ((:|)))
-import Evaluate (Evaluate (..))
-import LazyMax (LazyMax)
-import qualified LazyMax
-import LazyMin (LazyMin)
-import qualified LazyMin
 
 data MaxNode a = MaxLeaf a | MaxBranch (LazyMax (MinNode a))
 

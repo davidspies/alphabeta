@@ -1,12 +1,12 @@
 {-# LANGUAGE UndecidableInstances #-}
 
-module ThunkTree (ThunkTree, evaluate, leaf) where
+module AlphaBeta.ThunkTree (ThunkTree, evaluate, leaf) where
 
-import Convert (Convert (..))
-import Evaluate (Evaluate (..))
+import AlphaBeta.Convert (Convert (..))
+import AlphaBeta.Evaluate (Evaluate (..))
+import AlphaBeta.ThunkTree.Nodes hiding (leaf, maxNode, minNode)
+import qualified AlphaBeta.ThunkTree.Nodes as Nodes
 import Extrema (Extrema (..))
-import ThunkTree.Nodes hiding (leaf, maxNode, minNode)
-import qualified ThunkTree.Nodes as Nodes
 
 data ThunkTree a = ThunkTreeMax (MaxNode a) | ThunkTreeMin (MinNode a)
 

@@ -26,15 +26,15 @@ source-repository head
 library
   exposed-modules:
       AlphaBeta
-      Convert
-      Evaluate
+      AlphaBeta.Convert
+      AlphaBeta.Evaluate
+      AlphaBeta.ThunkTree
+      AlphaBeta.ThunkTree.LazyMax
+      AlphaBeta.ThunkTree.LazyMin
+      AlphaBeta.ThunkTree.Nodes
       Extrema
       Game
-      LazyMax
-      LazyMin
       MiniMax
-      ThunkTree
-      ThunkTree.Nodes
       ZeroSumGame
   other-modules:
       Paths_alphabeta
