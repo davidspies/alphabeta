@@ -1,35 +1,28 @@
 {-# LANGUAGE UndecidableInstances #-}
 
-module ThunkTree (ThunkTree, leaf, evaluate) where
+module ThunkTree (ThunkTree, evaluate, leaf) where
 
 import Convert (Convert (..))
-import Data.IORef (IORef, modifyIORef, newIORef, readIORef)
 import Evaluate (Evaluate (..))
 import Extrema (Extrema (..))
-import System.IO.Unsafe (unsafePerformIO)
-import ThunkTree.Descend (descend)
-import ThunkTree.Inner (ThunkTreeInner, maxNode, minNode)
-import qualified ThunkTree.Inner as Inner (leaf)
+import ThunkTree.Nodes hiding (leaf, maxNode, minNode)
+import qualified ThunkTree.Nodes as Nodes
 
-newtype ThunkTree a = ThunkTree (IORef (ThunkTreeInner a))
+data ThunkTree a = ThunkTreeMax (MaxNode a) | ThunkTreeMin (MinNode a)
 
-instance Extrema (ThunkTree a) where
-  maximum = makeThunkTree . maxNode . fmap convert
-  minimum = makeThunkTree . minNode . fmap convert
-
-makeThunkTree :: ThunkTreeInner a -> ThunkTree a
-makeThunkTree = unsafePerformIO . fmap ThunkTree . newIORef . descend
-
-getInner :: ThunkTree a -> ThunkTreeInner a
-getInner (ThunkTree x) = unsafePerformIO $ do
-  modifyIORef x descend
-  readIORef x
-
-instance (Evaluate a, Convert ThunkTreeInner a) => Convert ThunkTree a where
-  convert = convert . getInner
-
-leaf :: a -> ThunkTree a
-leaf = makeThunkTree . Inner.leaf
+instance Ord a => Extrema (ThunkTree a) where
+  maximum = ThunkTreeMax . Nodes.maxNode . fmap convert
+  minimum = ThunkTreeMin . Nodes.minNode . fmap convert
 
 instance Evaluate ThunkTree where
-  evaluate = evaluate . getInner
+  evaluate = \case
+    ThunkTreeMax y -> evaluate y
+    ThunkTreeMin y -> evaluate y
+
+instance (Evaluate a, Convert MinNode a, Convert MaxNode a) => Convert ThunkTree a where
+  convert = \case
+    ThunkTreeMax n -> convert n
+    ThunkTreeMin n -> convert n
+
+leaf :: a -> ThunkTree a
+leaf = ThunkTreeMax . Nodes.leaf

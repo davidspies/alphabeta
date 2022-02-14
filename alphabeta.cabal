@@ -34,8 +34,6 @@ library
       LazyMin
       MiniMax
       ThunkTree
-      ThunkTree.Descend
-      ThunkTree.Inner
       ThunkTree.Nodes
       ZeroSumGame
   other-modules:
