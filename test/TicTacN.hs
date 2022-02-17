@@ -11,7 +11,7 @@ import qualified Data.Map as M
 import Data.Maybe (fromJust, listToMaybe, maybeToList)
 import Data.Vector (Vector)
 import qualified Data.Vector as V
-import Extrema (Extrema, OptOrd (..))
+import Extrema (Extrema)
 import GHC.Generics (Generic)
 import GHC.Stack (HasCallStack)
 import Game (Game, GameStatus (GameOver, GameState, moves))
@@ -29,8 +29,7 @@ data Position = Position {turn :: Player, board :: Vector (Vector Cell)}
   deriving (Eq, Ord, Generic, Memoize)
 
 data WLTOutcome = XLose | XDraw | XWin
-  deriving (Eq, Ord, Show)
-  deriving (Extrema) via OptOrd WLTOutcome
+  deriving (Eq, Ord, Show, Extrema)
 
 playerToCell :: Player -> Cell
 playerToCell = \case

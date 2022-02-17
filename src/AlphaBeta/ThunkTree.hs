@@ -4,7 +4,7 @@ module AlphaBeta.ThunkTree (ThunkTree, evaluate, leaf) where
 
 import AlphaBeta.Convert (Convert (..))
 import AlphaBeta.Evaluate (Evaluate (..))
-import AlphaBeta.ThunkTree.Nodes hiding (leaf, maxNode, minNode)
+import AlphaBeta.ThunkTree.Nodes (MaxNode, MinNode)
 import qualified AlphaBeta.ThunkTree.Nodes as Nodes
 import Extrema (Extrema (..))
 

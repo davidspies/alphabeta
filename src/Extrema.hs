@@ -1,3 +1,5 @@
+{-# LANGUAGE DefaultSignatures #-}
+
 module Extrema where
 
 import Data.List.NonEmpty (NonEmpty)
@@ -6,13 +8,10 @@ import qualified Prelude as P
 
 class Extrema a where
   maximum :: NonEmpty a -> a
-  minimum :: NonEmpty a -> a
-
-newtype OptOrd a = OptOrd a
-  deriving (Eq, Ord)
-
-instance Ord a => Extrema (OptOrd a) where
+  default maximum :: Ord a => NonEmpty a -> a
   maximum = P.maximum
+  minimum :: NonEmpty a -> a
+  default minimum :: Ord a => NonEmpty a -> a
   minimum = P.minimum
 
-deriving via OptOrd Int instance Extrema Int
+instance Extrema Int
