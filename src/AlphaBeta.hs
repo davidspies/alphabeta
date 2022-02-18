@@ -2,7 +2,7 @@
 
 module AlphaBeta (solve) where
 
-import AlphaBeta.ThunkTree (ThunkTree, evaluate, leaf)
+import AlphaBeta.ThunkTree (ThunkTree, evaluate, wrap)
 import Data.Function.Memoize (Memoize)
 import qualified Data.List as List
 import Data.List.NonEmpty (NonEmpty)
@@ -25,7 +25,7 @@ instance (IsZeroSumGame game, Ord (Outcome game)) => IsZeroSumGame (AlphaBeta ga
   type Move (AlphaBeta game) = Move game
   type Outcome (AlphaBeta game) = ThunkTree (Outcome game)
   status (AlphaBeta game) pos = case status game pos of
-    GameOver {outcome} -> GameOver (leaf outcome)
+    GameOver {outcome} -> GameOver (wrap outcome)
     GameState {turn, moves} -> GameState {turn, moves = sortOn (Down . heuristic game pos) moves}
   makeMove = makeMove . getAlphaBeta
   heuristic = heuristic . getAlphaBeta

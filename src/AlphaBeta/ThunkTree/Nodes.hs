@@ -1,11 +1,4 @@
-module AlphaBeta.ThunkTree.Nodes
-  ( MaxNode,
-    MinNode,
-    leaf,
-    maxNode,
-    minNode,
-  )
-where
+module AlphaBeta.ThunkTree.Nodes (MaxNode, MinNode, maxNode, minNode) where
 
 import AlphaBeta.Convert (Convert (..))
 import AlphaBeta.Evaluate (Evaluate (..))
@@ -19,9 +12,6 @@ data MaxNode a = MaxLeaf a | MaxBranch (LazyMax (MinNode a))
 
 data MinNode a = MinLeaf a | MinBranch (LazyMin (MaxNode a))
 
-leaf :: a -> MaxNode a
-leaf = MaxLeaf
-
 maxNode :: NonEmpty (MinNode a) -> MaxNode a
 maxNode = MaxBranch . LazyMax.maximum
 
@@ -29,24 +19,22 @@ minNode :: NonEmpty (MaxNode a) -> MinNode a
 minNode = MinBranch . LazyMin.minimum
 
 instance Evaluate MaxNode where
+  wrap = MaxLeaf
   evaluate = \case
     MaxLeaf x -> x
     MaxBranch x -> evaluate $ evaluate x
 
 instance Evaluate MinNode where
+  wrap = MinLeaf
   evaluate = \case
     MinLeaf x -> x
     MinBranch x -> evaluate $ evaluate x
 
 instance Convert MinNode MaxNode where
-  convert n = case n of
-    MinLeaf x -> MaxLeaf x
-    MinBranch _ -> MaxBranch $ LazyMax.maximum (n :| [])
+  convert = MaxBranch . wrap
 
 instance Convert MaxNode MinNode where
-  convert n = case n of
-    MaxLeaf x -> MinLeaf x
-    MaxBranch _ -> MinBranch $ LazyMin.minimum (n :| [])
+  convert = MinBranch . wrap
 
 instance Ord a => Eq (MaxNode a) where
   x == y = x <= y && y <= x

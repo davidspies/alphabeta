@@ -7,5 +7,5 @@ solve :: (Game game, Memoize (Position game)) => game -> Position game -> Outcom
 solve game = go
   where
     go = memoize $ \pos -> case status game pos of
-      GameOver outcome -> outcome
+      GameOver {outcome} -> outcome
       GameState {turn, moves} -> bestOutcome game turn (go . makeMove game pos <$> moves)

@@ -1,8 +1,8 @@
 module AlphaBeta.ThunkTree.LazyMax (LazyMax, maximum) where
 
+import AlphaBeta.Evaluate (Evaluate (..))
 import Data.IORef (IORef, newIORef, readIORef, writeIORef)
 import Data.List.NonEmpty (NonEmpty (..))
-import AlphaBeta.Evaluate (Evaluate (..))
 import System.IO.Unsafe (unsafePerformIO)
 import Prelude hiding (maximum)
 
@@ -16,6 +16,7 @@ step (LazyMax ref) = do
     (y : ys) -> writeIORef ref (max x y, ys)
 
 instance Evaluate LazyMax where
+  wrap = maximum . (:| [])
   evaluate a@(LazyMax ref) = unsafePerformIO go
     where
       go = do
