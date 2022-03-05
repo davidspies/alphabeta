@@ -21,7 +21,7 @@ description: Please see the README on GitHub at <https://github.com/davidspies/a
 
 dependencies:
   - base >= 4.7 && < 5
-  - memoize
+  - fastmemo
 
 ghc-options:
   - -Wall

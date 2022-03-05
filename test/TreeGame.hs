@@ -2,7 +2,7 @@
 
 module TreeGame (TreeGame (..), Position (..)) where
 
-import Data.Function.Memoize (Memoize)
+import Data.Function.FastMemo (Memoizable)
 import Data.List.NonEmpty (NonEmpty ((:|)))
 import qualified Data.List.NonEmpty as NonEmpty
 import Extrema (Extrema)
@@ -16,7 +16,7 @@ newtype TreeGame a o = TreeGame (a -> o)
   deriving (Game) via ZeroSumGame (TreeGame a o)
 
 data Position a = Leaf a | Branch Player (NonEmpty (Position a))
-  deriving (Generic, Memoize)
+  deriving (Generic, Memoizable)
 
 instance Extrema o => IsZeroSumGame (TreeGame a o) where
   type Position (TreeGame a o) = Position a

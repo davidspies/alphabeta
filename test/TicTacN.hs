@@ -3,7 +3,7 @@
 module TicTacN (TicTacN (..), Player (..), Position (..), WLTOutcome (..), start) where
 
 import Control.Monad (guard)
-import Data.Function.Memoize (Memoize)
+import Data.Function.FastMemo (Memoizable)
 import Data.List.NonEmpty (NonEmpty (..), nonEmpty)
 import qualified Data.List.NonEmpty as NonEmpty
 import Data.Map (Map)
@@ -23,10 +23,10 @@ data TicTacN = TicTacN {width :: Int, height :: Int, inARow :: Int}
   deriving (Game) via ZeroSumGame TicTacN
 
 data Cell = X | O | E
-  deriving (Eq, Ord, Generic, Memoize)
+  deriving (Eq, Ord, Generic, Memoizable)
 
 data Position = Position {turn :: Player, board :: Vector (Vector Cell)}
-  deriving (Eq, Ord, Generic, Memoize)
+  deriving (Eq, Ord, Generic, Memoizable)
 
 data WLTOutcome = XLose | XDraw | XWin
   deriving (Eq, Ord, Show, Extrema)

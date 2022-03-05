@@ -3,7 +3,7 @@
 module AlphaBeta (solve) where
 
 import AlphaBeta.ThunkTree (ThunkTree, evaluate, wrap)
-import Data.Function.Memoize (Memoize)
+import Data.Function.FastMemo (Memoizable)
 import qualified Data.List as List
 import Data.List.NonEmpty (NonEmpty)
 import qualified Data.List.NonEmpty as NonEmpty
@@ -34,7 +34,7 @@ sortOn :: Ord b => (a -> b) -> NonEmpty a -> NonEmpty a
 sortOn f = NonEmpty.fromList . List.sortOn f . NonEmpty.toList
 
 solve ::
-  (IsZeroSumGame game, Memoize (Position game), Ord (Outcome game)) =>
+  (IsZeroSumGame game, Memoizable (Position game), Ord (Outcome game)) =>
   game ->
   Position game ->
   Outcome game

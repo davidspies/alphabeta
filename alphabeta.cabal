@@ -54,7 +54,7 @@ library
   ghc-options: -Wall
   build-depends:
       base >=4.7 && <5
-    , memoize
+    , fastmemo
   default-language: Haskell2010
 
 test-suite alphabeta-test
@@ -84,8 +84,8 @@ test-suite alphabeta-test
       alphabeta
     , base >=4.7 && <5
     , containers
+    , fastmemo
     , hspec
-    , memoize
     , tasty
     , tasty-discover
     , tasty-hspec

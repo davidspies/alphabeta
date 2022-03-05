@@ -1,6 +1,6 @@
 module ZeroSumGame where
 
-import Data.Function.Memoize (Memoize)
+import Data.Function.FastMemo (Memoizable)
 import Extrema (Extrema, maximum, minimum)
 import GHC.Generics (Generic)
 import Game (Game, GameStatus)
@@ -10,7 +10,7 @@ import Prelude hiding (maximum, minimum)
 newtype ZeroSumGame game = ZeroSumGame {getZeroSumGame :: game}
 
 data Player = MaxPlayer | MinPlayer
-  deriving (Eq, Ord, Generic, Memoize)
+  deriving (Eq, Ord, Generic, Memoizable)
 
 opposite :: Player -> Player
 opposite = \case

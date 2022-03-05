@@ -1,9 +1,9 @@
 module MiniMax where
 
-import Data.Function.Memoize (Memoize, memoize)
+import Data.Function.FastMemo (Memoizable, memoize)
 import Game (Game (..), GameStatus (..))
 
-solve :: (Game game, Memoize (Position game)) => game -> Position game -> Outcome game
+solve :: (Game game, Memoizable (Position game)) => game -> Position game -> Outcome game
 solve game = go
   where
     go = memoize $ \pos -> case status game pos of
